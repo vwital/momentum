@@ -106,13 +106,13 @@ slideNext.addEventListener("click", getSlideNext);
 //Погода
 const city = document.querySelector(".city");
 function myCity() {
-  city.value = "Minsk";
   if (
     localStorage.getItem("city" === null) ||
     "city" === "undefined" ||
-    "city" === "!"
+    "city" === "!" ||
+    "city" === " "
   ) {
-    city.value === "Minsk";
+    city.value = "Minsk";
     localStorage.setItem("city", city.value);
   } else {
     city.value = localStorage.getItem("city");
@@ -131,8 +131,8 @@ function getLocalStorageCity() {
     city.value = localStorage.getItem("city");
   }
 }
-window.addEventListener("load", getLocalStorage);
 console.log(myCity());
+window.addEventListener("load", getLocalStorage);
 const weatherError = document.querySelector(".weather-error");
 async function getWeather() {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=en&appid=d366b9cb418c81737502748bcf7f9253&units=metric`;
