@@ -10,6 +10,9 @@ const temperature = document.querySelector(".temperature");
 const weatherDescription = document.querySelector(".weather-description");
 const wind = document.querySelector(".wind");
 const humidity = document.querySelector(".humidity");
+const changeQuote = document.querySelector(".change-quote");
+const quote = document.querySelector(".quote");
+const author = document.querySelector(".author");
 
 let randomNum;
 function showTime() {
@@ -131,7 +134,7 @@ function getLocalStorageCity() {
     city.value = localStorage.getItem("city");
   }
 }
-console.log(myCity());
+
 window.addEventListener("load", getLocalStorage);
 const weatherError = document.querySelector(".weather-error");
 async function getWeather() {
@@ -160,3 +163,67 @@ city.addEventListener("change", () => {
 });
 
 //Цитата
+
+const quotes = [
+  {
+    text: "The greatest glory in living lies not in never falling, but in rising every time we fall",
+    author: "Nelson Mandela",
+  },
+  {
+    text: "The way to get started is to quit talking and begin doing.",
+    author: "Walt Disney",
+  },
+  {
+    text: "Spread love everywhere you go. Let no one ever come to you without leaving happier. ",
+    author: "Mother Teresa",
+  },
+  {
+    text: "Tell me and I forget. Teach me and I remember. Involve me and I learn.",
+    author: "Benjamin Franklin",
+  },
+  {
+    text: "It is during our darkest moments that we must focus to see the light.",
+    author: "Aristotle",
+  },
+  {
+    text: "Whoever is happy will make others happy too.",
+    author: "Anne Frank",
+  },
+  {
+    text: "You will face many defeats in life, but never let yourself be defeated.",
+    author: "Maya Angelou",
+  },
+  {
+    text: "Not how long, but how well you have lived is the main thing.",
+    author: "Seneca",
+  },
+  {
+    text: "The whole secret of a successful life is to find out what is one’s destiny to do, and then do it.",
+    author: "Henry Ford",
+  },
+  {
+    text: "Life is like riding a bicycle. To keep your balance, you must keep moving.",
+    author: "Albert Einstein",
+  },
+  {
+    text: "My mama always said, life is like a box of chocolates. You never know what you're gonna get.",
+    author: " Forrest Gump",
+  },
+];
+let randomNumQuote;
+function getRandomNumQuote() {
+  randomNumQuote = Math.floor(Math.random() * 10);
+}
+getRandomNumQuote();
+
+function getQuotes() {
+  const QuoteText = quotes[randomNumQuote].text;
+  const QuoteAuthor = quotes[randomNumQuote].author;
+  quote.textContent = `${QuoteText} `;
+  author.textContent = `${QuoteAuthor}`;
+  getRandomNumQuote();
+}
+getQuotes();
+changeQuote.addEventListener("click", () => {
+  getQuotes();
+});
