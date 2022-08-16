@@ -111,7 +111,7 @@ function myCity() {
     "city" === "undefined" ||
     "city" === "!"
   ) {
-    city.value === Minsk;
+    city.value === "Minsk";
     localStorage.setItem("city", city.value);
   } else {
     city.value = localStorage.getItem("city");
