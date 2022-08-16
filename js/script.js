@@ -5,6 +5,12 @@ const greeting = document.querySelector(".greeting");
 const slidePrev = document.querySelector(".slide-prev");
 const slideNext = document.querySelector(".slide-next");
 const body = document.querySelector("body");
+const weatherIcon = document.querySelector(".weather-icon");
+const temperature = document.querySelector(".temperature");
+const weatherDescription = document.querySelector(".weather-description");
+const wind = document.querySelector(".wind");
+const humidity = document.querySelector(".humidity");
+
 let randomNum;
 function showTime() {
   const date = new Date();
@@ -96,3 +102,54 @@ function getSlidePrev() {
 }
 slidePrev.addEventListener("click", getSlidePrev);
 slideNext.addEventListener("click", getSlideNext);
+
+//Погода
+const city = document.querySelector(".city");
+function myCity() {
+  if (localStorage.getItem("city" === null)) {
+    city.value === Minsk;
+    localStorage.setItem("city", city.value);
+  } else {
+    city.value = localStorage.getItem("city");
+    getWeather();
+  }
+  return city.value;
+}
+myCity();
+function setLocalStorageCity() {
+  localStorage.setItem("city", city.value);
+}
+window.addEventListener("beforeunload", setLocalStorageCity);
+
+function getLocalStorageCity() {
+  if (localStorage.getItem("city")) {
+    city.value = localStorage.getItem("city");
+  }
+}
+window.addEventListener("load", getLocalStorage);
+console.log(myCity());
+const weatherError = document.querySelector(".weather-error");
+async function getWeather() {
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=en&appid=d366b9cb418c81737502748bcf7f9253&units=metric`;
+  const res = await fetch(url);
+  const data = await res.json();
+  if (data.cod === "404" || data.cod === "400") {
+    weatherError.textContent = `Error! city not found for ${city.value}!`;
+    weatherIcon.classList = "";
+    temperature.textContent = "";
+    wind.textContent = "";
+    humidity.textContent = "";
+    weatherDescription.textContent = "";
+  } else {
+    weatherIcon.className = "weather-icon owf";
+    weatherIcon.classList.add(`owf-${data.weather[0].id}`);
+    temperature.textContent = `${Math.round(data.main.temp)}°C`;
+    weatherDescription.textContent = data.weather[0].description;
+    wind.textContent = `Wind speed: ${Math.floor(data.wind.speed)} m/s`;
+    humidity.textContent = `Humidity: ${data.main.humidity}%`;
+    weatherError.textContent = "";
+  }
+}
+city.addEventListener("change", () => {
+  getWeather(city.value);
+});
