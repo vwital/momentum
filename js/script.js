@@ -111,11 +111,12 @@ const city = document.querySelector(".city");
 function myCity() {
   if (
     localStorage.getItem("city" === null) ||
-    localStorage.getItem("city" === "undefined") ||
-    localStorage.getItem("city" === "!") ||
-    localStorage.getItem("city" === " ")
+    "city.value" === "undefined" ||
+    "city.value" === "!" ||
+    "city.value" === " "
   ) {
     city.value = "Minsk";
+    localStorage.setItem("city", city.value);
   } else {
     city.value = localStorage.getItem("city");
     getWeather();
@@ -226,3 +227,5 @@ getQuotes();
 changeQuote.addEventListener("click", () => {
   getQuotes();
 });
+
+//Плеер
