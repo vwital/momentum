@@ -111,12 +111,11 @@ const city = document.querySelector(".city");
 function myCity() {
   if (
     localStorage.getItem("city" === null) ||
-    "city" === "undefined" ||
-    "city" === "!" ||
-    "city" === " "
+    localStorage.getItem("city" === "undefined") ||
+    localStorage.getItem("city" === "!") ||
+    localStorage.getItem("city" === " ")
   ) {
     city.value = "Minsk";
-    localStorage.setItem("city", city.value);
   } else {
     city.value = localStorage.getItem("city");
     getWeather();
