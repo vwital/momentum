@@ -106,8 +106,12 @@ slideNext.addEventListener("click", getSlideNext);
 //Погода
 const city = document.querySelector(".city");
 function myCity() {
-  if (localStorage.getItem("city" === null)) {
-    city.value === Minsk;
+  if (
+    localStorage.getItem("city" === null) ||
+    "city" === "undefined" ||
+    "city" === "!"
+  ) {
+    city.value === "Minsk";
     localStorage.setItem("city", city.value);
   } else {
     city.value = localStorage.getItem("city");
@@ -153,3 +157,5 @@ async function getWeather() {
 city.addEventListener("change", () => {
   getWeather(city.value);
 });
+
+//Цитата
