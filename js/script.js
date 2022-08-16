@@ -2,6 +2,10 @@
 const time = document.querySelector(".time");
 const myDate = document.querySelector(".date");
 const greeting = document.querySelector(".greeting");
+const slidePrev = document.querySelector(".slide-prev");
+const slideNext = document.querySelector(".slide-next");
+const body = document.querySelector("body");
+let randomNum;
 function showTime() {
   const date = new Date();
   const currentTime = date.toLocaleTimeString();
@@ -35,7 +39,9 @@ function getTimeOfDay() {
   if (hours >= 12 && hours < 18) timeOfDay = "afternoon";
   if (hours >= 18 && hours < 24) timeOfDay = "evening";
   greeting.textContent = `Good ${timeOfDay}`;
+  return timeOfDay;
 }
+
 //Имя
 
 const name = document.querySelector(".name");
@@ -49,4 +55,44 @@ function getLocalStorage() {
     name.value = localStorage.getItem("name");
   }
 }
+
 window.addEventListener("load", getLocalStorage);
+//Обои
+
+function getRandomNum() {
+  randomNum = Math.ceil(Math.random() * 20);
+}
+getRandomNum();
+function setBg() {
+  const timeOfDay = getTimeOfDay();
+  const num = randomNum + "";
+  const bgNum = num.padStart(2, 0);
+  const img = new Image();
+  img.src = `https://raw.githubusercontent.com/vwital/stage1-tasks/assets/images/${timeOfDay}/${bgNum}.jpg`;
+  img.onload = () => {
+    body.style.backgroundImage = `url(https://raw.githubusercontent.com/vwital/stage1-tasks/assets/images/${timeOfDay}/${bgNum}.jpg)`;
+  };
+}
+setBg();
+
+// Листание обоев
+
+function getSlideNext() {
+  if (randomNum === 20) {
+    randomNum = 1;
+  } else {
+    randomNum = randomNum + 1;
+  }
+
+  setBg();
+}
+function getSlidePrev() {
+  if (randomNum === 1) {
+    randomNum = 20;
+  } else {
+    randomNum = randomNum - 1;
+  }
+  setBg();
+}
+slidePrev.addEventListener("click", getSlidePrev);
+slideNext.addEventListener("click", getSlideNext);
