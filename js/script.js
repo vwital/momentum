@@ -260,11 +260,12 @@ function playPauseAudio() {
 
 const play = document.querySelector(".play");
 function toggleBtn() {
-  play.classList.toggle("pause");
   if (isPlay === true) {
+    play.classList.remove("pause");
     pauseAudio();
     isPlay = false;
   } else if (isPlay === false) {
+    play.classList.add("pause");
     playAudio();
     isPlay = true;
   }
@@ -299,17 +300,17 @@ function playPrevS() {
 }
 playNext.addEventListener("click", () => {
   playNextS();
-  // playButton();
-  playAudio();
+  // playAudio();
   isPlay = true;
   playButton();
+  toggleBtn();
 });
 playPrev.addEventListener("click", () => {
   playPrevS();
-  // playButton();
-  playAudio();
+  // playAudio();
   isPlay = true;
   playButton();
+  toggleBtn();
 });
 console.log(isPlay);
 import playList from "./playList.js";
