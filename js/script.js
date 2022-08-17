@@ -1,4 +1,3 @@
-console.log(playList);
 const time = document.querySelector(".time");
 const myDate = document.querySelector(".date");
 const greeting = document.querySelector(".greeting");
@@ -238,24 +237,16 @@ changeQuote.addEventListener("click", () => {
 });
 
 //Плеер
-console.log(isPlay);
+
 const audio = new Audio();
 function playAudio() {
   audio.src = playList[playNum].src;
+  currentTrack();
   audio.currentTime = 0;
   audio.play();
 }
 function pauseAudio() {
   audio.pause();
-}
-function playPauseAudio() {
-  if (isPlay === true) {
-    pauseAudio();
-    isPlay = false;
-  } else if (isPlay === false) {
-    playAudio();
-    isPlay = true;
-  }
 }
 
 const play = document.querySelector(".play");
@@ -263,6 +254,7 @@ function toggleBtn() {
   if (isPlay === true) {
     play.classList.remove("pause");
     pauseAudio();
+
     isPlay = false;
   } else if (isPlay === false) {
     play.classList.add("pause");
@@ -312,14 +304,18 @@ playPrev.addEventListener("click", () => {
   playButton();
   toggleBtn();
 });
-console.log(isPlay);
-import playList from "./playList.js";
-console.log(playList);
-const playListContainer = document.querySelector(".play-list");
 
+import playList from "./playList.js";
+
+const playListContainer = document.querySelector(".play-list");
 playList.forEach((el) => {
   const li = document.createElement("li");
   li.classList.add("play-item");
   li.textContent = `${el.title}`;
   playListContainer.append(li);
 });
+
+const playItem = document.querySelectorAll("li");
+function currentTrack() {
+  playItem[playNum].classList.add("item-active");
+}
