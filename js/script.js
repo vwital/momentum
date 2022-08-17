@@ -116,19 +116,15 @@ slideNext.addEventListener("click", getSlideNext);
 const city = document.querySelector(".city");
 function myCity() {
   if (
-    localStorage.getItem("city.value" === null) ||
-    "city.value" === "undefined" ||
-    "city.value" === "!" ||
-    "city.value" === " "
+    localStorage.getItem(
+      "city" === null ||
+        "city.value" === "undefined" ||
+        "city.value" === "!" ||
+        "city.value" === " "
+    )
   ) {
     city.value = "Minsk";
     localStorage.setItem("city", city.value);
-  } else if (
-    localStorage.getItem("city" === null) ||
-    "city" === "undefined" ||
-    "city" === "!" ||
-    "city" === " "
-  ) {
     city.value = "Minsk";
   } else {
     city.value = localStorage.getItem("city");
