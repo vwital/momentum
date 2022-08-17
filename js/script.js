@@ -1,4 +1,4 @@
-//Время
+console.log(playList);
 const time = document.querySelector(".time");
 const myDate = document.querySelector(".date");
 const greeting = document.querySelector(".greeting");
@@ -13,10 +13,14 @@ const humidity = document.querySelector(".humidity");
 const changeQuote = document.querySelector(".change-quote");
 const quote = document.querySelector(".quote");
 const author = document.querySelector(".author");
+const playPrev = document.querySelector(".play-prev");
+const playNext = document.querySelector(".play-next");
 const player = document.querySelector(".player");
 
 let randomNum;
 let isPlay = false;
+let playNum = 0;
+//Время
 function showTime() {
   const date = new Date();
   const currentTime = date.toLocaleTimeString();
@@ -232,13 +236,69 @@ changeQuote.addEventListener("click", () => {
 });
 
 //Плеер
+
+const audio = new Audio();
 function playAudio() {
-  isPlay = true;
-  player.currentTime = 0;
-  player.play();
+  audio.src = playList[playNum].src;
+  audio.currentTime = 0;
+  audio.play();
 }
 function pauseAudio() {
-  isPlay = false;
-  player.pause();
+  audio.pause();
 }
-function toggleBtn() {}
+
+function playPauseAudio() {
+  if (isPlay === false) {
+    playAudio();
+    isPlay = true;
+  } else if (isPlay === true) {
+    pauseAudio();
+    isPlay = false;
+  }
+  console.log(isPlay);
+}
+const play = document.querySelector(".play");
+function toggleBtn() {
+  playPauseAudio();
+  play.classList.toggle("pause");
+}
+
+play.addEventListener("click", toggleBtn());
+function playButton() {
+  if (isPlay === true) {
+    play.classList.add("pause");
+    isPlay = false;
+  } else if (isPlay === false) {
+    play.classList.remove("pause");
+    isPlay = true;
+  }
+}
+
+function playNextS() {
+  if (playNum === 3) {
+    playNum = 0;
+  } else {
+    playNum = playNum + 1;
+    console.log(playNum);
+  }
+}
+function playPrevS() {
+  if (playNum === 0) {
+    playNum = 3;
+  } else {
+    playNum = playNum - 1;
+  }
+  console.log(playNum);
+}
+playNext.addEventListener("click", () => {
+  playNextS();
+  playAudio();
+  playButton();
+});
+playPrev.addEventListener("click", () => {
+  playPrevS();
+  playAudio();
+  playButton();
+});
+import playList from "./playList.js";
+console.log(playList);
