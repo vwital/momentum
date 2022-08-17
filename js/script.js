@@ -13,8 +13,10 @@ const humidity = document.querySelector(".humidity");
 const changeQuote = document.querySelector(".change-quote");
 const quote = document.querySelector(".quote");
 const author = document.querySelector(".author");
+const player = document.querySelector(".player");
 
 let randomNum;
+let isPlay = false;
 function showTime() {
   const date = new Date();
   const currentTime = date.toLocaleTimeString();
@@ -137,6 +139,7 @@ function getLocalStorageCity() {
 
 window.addEventListener("load", getLocalStorage);
 const weatherError = document.querySelector(".weather-error");
+city.value = "Minsk";
 async function getWeather() {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=en&appid=d366b9cb418c81737502748bcf7f9253&units=metric`;
   const res = await fetch(url);
@@ -229,3 +232,13 @@ changeQuote.addEventListener("click", () => {
 });
 
 //Плеер
+function playAudio() {
+  isPlay = true;
+  player.currentTime = 0;
+  player.play();
+}
+function pauseAudio() {
+  isPlay = false;
+  player.pause();
+}
+function toggleBtn() {}
