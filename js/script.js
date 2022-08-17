@@ -250,10 +250,10 @@ function pauseAudio() {
 }
 function playPauseAudio() {
   if (isPlay === true) {
-    playAudio();
+    pauseAudio();
     isPlay = false;
   } else if (isPlay === false) {
-    pauseAudio();
+    playAudio();
     isPlay = true;
   }
 }
@@ -261,21 +261,27 @@ function playPauseAudio() {
 const play = document.querySelector(".play");
 function toggleBtn() {
   play.classList.toggle("pause");
-  playPauseAudio();
+  if (isPlay === true) {
+    pauseAudio();
+    isPlay = false;
+  } else if (isPlay === false) {
+    playAudio();
+    isPlay = true;
+  }
 }
 play.addEventListener("click", () => {
   toggleBtn();
 });
 
-// function playButton() {
-//   if (isPlay === true) {
-//     play.classList.add("pause");
-//     isPlay = false;
-//   } else if (isPlay === false) {
-//     play.classList.remove("pause");
-//     isPlay = true;
-//   }
-// }
+function playButton() {
+  if (isPlay === true) {
+    play.classList.add("pause");
+    isPlay = false;
+  } else if (isPlay === false) {
+    play.classList.remove("pause");
+    isPlay = true;
+  }
+}
 
 function playNextS() {
   if (playNum === 3) {
@@ -295,11 +301,15 @@ playNext.addEventListener("click", () => {
   playNextS();
   // playButton();
   playAudio();
+  isPlay = true;
+  playButton();
 });
 playPrev.addEventListener("click", () => {
   playPrevS();
   // playButton();
   playAudio();
+  isPlay = true;
+  playButton();
 });
 console.log(isPlay);
 import playList from "./playList.js";
