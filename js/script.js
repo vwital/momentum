@@ -238,7 +238,7 @@ changeQuote.addEventListener("click", () => {
 });
 
 //Плеер
-
+console.log(isPlay);
 const audio = new Audio();
 function playAudio() {
   audio.src = playList[playNum].src;
@@ -248,40 +248,40 @@ function playAudio() {
 function pauseAudio() {
   audio.pause();
 }
-
 function playPauseAudio() {
-  if (isPlay === false) {
-    playAudio();
-    isPlay = true;
-  } else if (isPlay === true) {
-    pauseAudio();
-    isPlay = false;
-  }
-  console.log(isPlay);
-}
-const play = document.querySelector(".play");
-function toggleBtn() {
-  playPauseAudio();
-  play.classList.toggle("pause");
-}
-
-play.addEventListener("click", toggleBtn());
-function playButton() {
   if (isPlay === true) {
-    play.classList.add("pause");
+    playAudio();
     isPlay = false;
   } else if (isPlay === false) {
-    play.classList.remove("pause");
+    pauseAudio();
     isPlay = true;
   }
 }
+
+const play = document.querySelector(".play");
+function toggleBtn() {
+  play.classList.toggle("pause");
+  playPauseAudio();
+}
+play.addEventListener("click", () => {
+  toggleBtn();
+});
+
+// function playButton() {
+//   if (isPlay === true) {
+//     play.classList.add("pause");
+//     isPlay = false;
+//   } else if (isPlay === false) {
+//     play.classList.remove("pause");
+//     isPlay = true;
+//   }
+// }
 
 function playNextS() {
   if (playNum === 3) {
     playNum = 0;
   } else {
     playNum = playNum + 1;
-    console.log(playNum);
   }
 }
 function playPrevS() {
@@ -290,17 +290,25 @@ function playPrevS() {
   } else {
     playNum = playNum - 1;
   }
-  console.log(playNum);
 }
 playNext.addEventListener("click", () => {
   playNextS();
+  // playButton();
   playAudio();
-  playButton();
 });
 playPrev.addEventListener("click", () => {
   playPrevS();
+  // playButton();
   playAudio();
-  playButton();
 });
+console.log(isPlay);
 import playList from "./playList.js";
 console.log(playList);
+const playListContainer = document.querySelector(".play-list");
+
+playList.forEach((el) => {
+  const li = document.createElement("li");
+  li.classList.add("play-item");
+  li.textContent = `${el.title}`;
+  playListContainer.append(li);
+});
