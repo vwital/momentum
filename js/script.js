@@ -116,13 +116,20 @@ slideNext.addEventListener("click", getSlideNext);
 const city = document.querySelector(".city");
 function myCity() {
   if (
-    localStorage.getItem("city" === null) ||
+    localStorage.getItem("city.value" === null) ||
     "city.value" === "undefined" ||
     "city.value" === "!" ||
     "city.value" === " "
   ) {
     city.value = "Minsk";
     localStorage.setItem("city", city.value);
+  } else if (
+    localStorage.getItem("city" === null) ||
+    "city" === "undefined" ||
+    "city" === "!" ||
+    "city" === " "
+  ) {
+    city.value = "Minsk";
   } else {
     city.value = localStorage.getItem("city");
     getWeather();
@@ -143,7 +150,6 @@ function getLocalStorageCity() {
 
 window.addEventListener("load", getLocalStorage);
 const weatherError = document.querySelector(".weather-error");
-city.value = "Minsk";
 async function getWeather() {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=en&appid=d366b9cb418c81737502748bcf7f9253&units=metric`;
   const res = await fetch(url);
