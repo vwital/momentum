@@ -316,9 +316,34 @@ playList.forEach((el) => {
   playListContainer.append(li);
 });
 
+let prevNum;
+let nextNum;
+if (playNum === 0) {
+  prevNum = 3;
+} else {
+  prevNum = playNum - 1;
+}
+if (playNum === 3) {
+  nextNum = 0;
+} else {
+  nextNum = playNum + 1;
+}
+
 const playItem = document.querySelectorAll("li");
 function currentTrack() {
+  if (playNum === 0) {
+    prevNum = 3;
+  } else {
+    prevNum = playNum - 1;
+  }
+  if (playNum === 3) {
+    nextNum = 0;
+  } else {
+    nextNum = playNum + 1;
+  }
   playItem[playNum].classList.add("item-active");
+  playItem[prevNum].classList.remove("item-active");
+  playItem[nextNum].classList.remove("item-active");
 }
 
 const currentSong = document.querySelector(".current-song");
