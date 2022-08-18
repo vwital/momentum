@@ -353,9 +353,6 @@ setInterval(() => {
   progressBar.style.width = (audio.currentTime / audio.duration) * 100 + "%";
   if (progressBar.style.width === "100%") {
     playNextS();
-    // playAudio();
-    isPlay = true;
-    playButton();
-    toggleBtn();
+    playAudio();
   }
 }, 200);
