@@ -348,24 +348,11 @@ timeLine.addEventListener(
   },
   false
 );
-let playPromise = audio.play();
-
-if (playPromise !== undefined) {
-  playPromise
-    .then((_) => {
-      // Automatic playback started!
-      // Show playing UI.
-    })
-    .catch((error) => {
-      // Auto-play was prevented
-      // Show paused UI.
-    });
-}
 setInterval(() => {
   const progressBar = document.querySelector(".progress");
   progressBar.style.width = (audio.currentTime / audio.duration) * 100 + "%";
-  if (progressBar.style.width === "100%") {
-    playNextS();
-    playAudio();
-  }
+  // if (progressBar.style.width === "100%") {
+  //   playNextS();
+  //   playAudio();
+  // }
 }, 200);
