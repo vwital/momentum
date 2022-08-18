@@ -15,6 +15,7 @@ const author = document.querySelector(".author");
 const playPrev = document.querySelector(".play-prev");
 const playNext = document.querySelector(".play-next");
 const player = document.querySelector(".player");
+// const volumeSlider = document.querySelector(" .volume-slider");
 
 let randomNum;
 let isPlay = false;
@@ -244,6 +245,7 @@ function playAudio() {
   currentTrack();
   audio.currentTime = 0;
   audio.play();
+  songName();
 }
 function pauseAudio() {
   audio.pause();
@@ -318,4 +320,30 @@ playList.forEach((el) => {
 const playItem = document.querySelectorAll("li");
 function currentTrack() {
   playItem[playNum].classList.add("item-active");
+}
+
+// volumeSlider.addEventListener(
+//   "click",
+//   (e) => {
+//     const sliderWidth = window.getComputedStyle(volumeSlider).width;
+//     const newVolume = e.offsetX / parseInt(sliderWidth);
+//     audio.volume = newVolume;
+//     player.querySelector(".controls .volume-percentage").style.width =
+//       newVolume * 100 + "%";
+//   },
+//   false
+// );
+const currentSong = document.querySelector(".current-song");
+function songName() {
+  currentSong.innerHTML = playList[playNum].title;
+}
+let song = playList[playNum];
+const progressBar = document.querySelector("#progress-bar");
+function updateProgressBar() {
+  progressBar.max = song.duration;
+  progressBar.value = song.currentTime;
+}
+
+function changeProgressBar() {
+  song.currentTime = progressBar.value;
 }

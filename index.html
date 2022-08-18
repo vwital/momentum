@@ -11,10 +11,26 @@
   <body>
     <header class="header">
       <div class="player">
+
         <div class="player-controls">
           <button class="play-prev player-icon"></button>
           <button class="play player-icon"></button>
           <button class="play-next player-icon"></button>
+          <div class="current-song"></div>
+          <input type="range"
+          id="progress-bar"
+          min="0"
+          max="0"
+          onchange="changeProgressBar()">
+          <!-- <div class="volume-container">
+            <div class="volume-button">
+              <div class="volume icono-volumeMedium"></div>
+            </div>
+
+            <div class="volume-slider">
+              <div class="volume-percentage"></div>
+            </div> -->
+          </div>
         </div>
         <ul class="play-list"></ul>
       </div>
