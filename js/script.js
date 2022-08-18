@@ -351,8 +351,33 @@ timeLine.addEventListener(
 setInterval(() => {
   const progressBar = document.querySelector(".progress");
   progressBar.style.width = (audio.currentTime / audio.duration) * 100 + "%";
+  document.querySelector(".current").textContent = getTimeCodeFormNum(
+    audio.currentTime
+  );
   // if (progressBar.style.width === "100%") {
   //   playNextS();
   //   playAudio();
   // }
 }, 200);
+
+const lele = document.querySelector(".length");
+
+audio.addEventListener(
+  "loadeddata",
+  () => {
+    document.querySelector(".length").textContent = getTimeCodeFormNum(
+      audio.duration
+    );
+  },
+  false
+);
+
+function getTimeCodeFormNum(num) {
+  let seconds = parseInt(num);
+  let minutes = parseInt(seconds / 60);
+  seconds -= minutes * 60;
+  const hours = parseInt(minutes / 60);
+  minutes -= hours * 60;
+
+  if (hours === 0) return `${minutes}:${String(seconds % 60).padStart(2, 0)}`;
+}

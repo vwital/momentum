@@ -118,6 +118,24 @@ body {
   background-image: url("../assets/svg/play-next.svg");
 }
 
+.song-time {
+  position: absolute;
+  display: flex;
+  width: 200px;
+  height: 10px;
+  top: 80px;
+}
+
+.current {
+  position: relative;
+  left: -12px;
+}
+
+.length {
+  position: relative;
+  right: -135px;
+}
+
 .current-song {
   width: 180px;
   height: 10px;
