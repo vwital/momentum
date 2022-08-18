@@ -15,7 +15,6 @@ const author = document.querySelector(".author");
 const playPrev = document.querySelector(".play-prev");
 const playNext = document.querySelector(".play-next");
 const player = document.querySelector(".player");
-// const volumeSlider = document.querySelector(" .volume-slider");
 
 let randomNum;
 let isPlay = false;
@@ -322,17 +321,6 @@ function currentTrack() {
   playItem[playNum].classList.add("item-active");
 }
 
-// volumeSlider.addEventListener(
-//   "click",
-//   (e) => {
-//     const sliderWidth = window.getComputedStyle(volumeSlider).width;
-//     const newVolume = e.offsetX / parseInt(sliderWidth);
-//     audio.volume = newVolume;
-//     player.querySelector(".controls .volume-percentage").style.width =
-//       newVolume * 100 + "%";
-//   },
-//   false
-// );
 const currentSong = document.querySelector(".current-song");
 function songName() {
   currentSong.innerHTML = playList[playNum].title;
@@ -360,8 +348,6 @@ setInterval(() => {
   // }
 }, 200);
 
-const lele = document.querySelector(".length");
-
 audio.addEventListener(
   "loadeddata",
   () => {
@@ -381,3 +367,19 @@ function getTimeCodeFormNum(num) {
 
   if (hours === 0) return `${minutes}:${String(seconds % 60).padStart(2, 0)}`;
 }
+
+const range = document.querySelector(".volume");
+
+range.addEventListener("change", (e) => {
+  audio.volume = e.target.value / 100;
+});
+
+const speaker = document.querySelector(".speaker");
+speaker.addEventListener("click", () => {
+  speaker.classList.toggle("mute");
+  if (audio.volume > 0) {
+    audio.volume = 0;
+  } else {
+    audio.volume = 0.5;
+  }
+});

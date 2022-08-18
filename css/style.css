@@ -136,6 +136,32 @@ body {
   right: -135px;
 }
 
+.volume {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 180px;
+}
+
+.volume-loud {
+  width: 40px;
+  height: 40px;
+  background-size: 40px 40px;
+  position: relative;
+  right: 5px;
+  background-image: url("../assets/svg/speaker-white.svg");
+  cursor: pointer;
+}
+
+.mute {
+  background-image: url("../assets/svg/speaker-white-mute.svg");
+}
+
+.icon-size {
+  font-size: 2rem;
+}
+
 .current-song {
   width: 180px;
   height: 10px;
