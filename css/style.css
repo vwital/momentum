@@ -150,12 +150,12 @@ body {
   background-size: 40px 40px;
   position: relative;
   right: 5px;
-  background-image: url("../assets/svg/speaker-white.svg");
+  background-image: url("../assets/svg/speaker-blue.svg");
   cursor: pointer;
 }
 
 .mute {
-  background-image: url("../assets/svg/speaker-white-mute.svg");
+  background-image: url("../assets/svg/speaker-blue-mute.svg");
 }
 
 .icon-size {
