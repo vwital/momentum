@@ -123,14 +123,14 @@ body {
   height: 10px;
   position: absolute;
   top: 80px;
+  font-family: "Arial", sans-serif;
+  font-size: 16px;
+  opacity: 0.8;
+  transition: 0.7s;
 }
 
-#progress-bar {
-  -webkit-appearance: none;
-  appearance: none;
-  display: flex;
+.timeline {
   position: absolute;
-  z-index: 4;
   height: 5px;
   background: #000000;
   width: 155pt;
@@ -138,30 +138,13 @@ body {
   border-radius: 30px;
   left: 10px;
 }
-
-#progress-bar::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  margin-top: -3px;
-  margin-left: 0px;
-  height: 10px;
-  width: 7px;
-  border: 0;
-  background: -webkit-linear-gradient(45deg, rgb(213, 213, 213));
-  border-radius: 30px;
-  cursor: pointer;
+.progress {
+  background: cornflowerblue;
+  width: 0%;
+  height: 100%;
+  transition: 0.25s;
 }
 
-#progress-bar::-webkit-slider-runnable-track {
-  -webkit-appearance: none;
-  appearance: none;
-  cursor: pointer;
-  max-height: 5px;
-  border-radius: 30px;
-}
-
-#progress-bar:focus {
-  outline: none;
-}
 .play-list {
   position: absolute;
   top: 120px;

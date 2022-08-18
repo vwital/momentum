@@ -337,13 +337,25 @@ const currentSong = document.querySelector(".current-song");
 function songName() {
   currentSong.innerHTML = playList[playNum].title;
 }
-let song = playList[playNum];
-const progressBar = document.querySelector("#progress-bar");
-function updateProgressBar() {
-  progressBar.max = song.duration;
-  progressBar.value = song.currentTime;
-}
+const timeLine = document.querySelector(".timeline");
 
-function changeProgressBar() {
-  song.currentTime = progressBar.value;
-}
+timeLine.addEventListener(
+  "click",
+  (e) => {
+    const timeLineWidth = window.getComputedStyle(timeLine).width;
+    const timeToSeek = (e.offsetX / parseInt(timeLineWidth)) * audio.duration;
+    audio.currentTime = timeToSeek;
+  },
+  false
+);
+setInterval(() => {
+  const progressBar = document.querySelector(".progress");
+  progressBar.style.width = (audio.currentTime / audio.duration) * 100 + "%";
+  if (progressBar.style.width === "100%") {
+    playNextS();
+    // playAudio();
+    isPlay = true;
+    playButton();
+    toggleBtn();
+  }
+}, 200);
