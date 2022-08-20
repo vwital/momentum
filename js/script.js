@@ -499,7 +499,7 @@ function getLocalStorageSettings() {
   localStorage.getItem(time.classList);
 }
 EN.classList.add("myLang");
-
+console.log(quotes[0].author);
 RU.addEventListener("click", () => {
   lang = "RU";
   document.getElementsByName("yourName")[0].placeholder = "[Введите имя]";
@@ -511,25 +511,37 @@ RU.addEventListener("click", () => {
   greetingSet.innerHTML = '<input  type="checkbox" checked> Приветствие';
   quoteSet.innerHTML = '<input type="checkbox" checked> Цитата';
   languageSet.innerHTML = "Язык:";
-
-  /*
-playerSet.innerHTML = '<input type="checkbox" checked> player'
-weatherSet.innerHTML = '<input  type="checkbox" checked> weather'
-timeSet.innerHTML = '<input  type="checkbox" checked> time'
-dateSet.innerHTML = '<input  type="checkbox" checked> date'
-greetingSet.innerHTML = '<input  type="checkbox" checked> greeting'
-quoteSet.innerHTML = '<input type="checkbox" checked> quote'
-
-
-*/
-  // let timeOfDay = "";
-  // const date = new Date();
-  // const hours = date.getHours();
-  // if (hours >= 0 && hours < 6) timeOfDay = "ночного времени";
-  // if (hours >= 6 && hours < 12) timeOfDay = "утречка";
-  // if (hours >= 12 && hours < 18) timeOfDay = "дня";
-  // if (hours >= 18 && hours < 24) timeOfDay = "вечера";
-  // greeting.innerHTML = `Доброго ${timeOfDay}`;
+  weatherError.textContent = `Ошибка. Город: ${city.value} не найден!`;
+  quotes[0].author = "Наполеон Хилл";
+  quotes[0].text =
+    "Что разум человека может постигнуть и во что он может поверить, того он способен достичь";
+  quotes[1].author = "Альберт Эйнштейн";
+  quotes[1].text = "Стремитесь не к успеху, а к ценностям, которые он дает​";
+  quotes[2].author = "Амелия Эрхарт";
+  quotes[2].text =
+    "Сложнее всего начать действовать, все остальное зависит только от упорства.";
+  quotes[3].author = "Студент RSSchool";
+  quotes[3].text = "Блин, ещё цитаты где-то искать... ";
+  quotes[4].author = "Стив Джобс";
+  quotes[4].text = " Ваше время ограничено, не тратьте его, живя чужой жизнью";
+  quotes[5].author = "Христофор Колумб";
+  quotes[5].text =
+    "Вы никогда не пересечете океан, если не наберетесь мужества потерять берег из виду.";
+  quotes[6].author = "Генри Форд";
+  quotes[6].text =
+    "Если вы думаете, что на что-то способны, вы правы; если думаете, что у вас ничего не получится - вы тоже правы.";
+  quotes[7].author = "Марк Твен";
+  quotes[7].text =
+    "Два самых важных дня в твоей жизни: день, когда ты появился на свет, и день, когда понял, зачем.";
+  quotes[8].author = "Фрэнк Синатра";
+  quotes[8].text = " Лучшая месть – огромный успех.";
+  quotes[9].author = "Уоррен Баффет";
+  quotes[9].text =
+    "Лучше быть уверенным в хорошем результате, чем надеяться на отличный.";
+  quotes[10].author = "Вуди Аллен";
+  quotes[10].text =
+    " 80% успеха - это появиться в нужном месте в нужное время.";
+  getQuotes();
   RU.classList.add("myLang");
   EN.classList.remove("myLang");
 });
@@ -546,4 +558,50 @@ EN.addEventListener("click", () => {
   languageSet.innerHTML = "Language:";
   EN.classList.add("myLang");
   RU.classList.remove("myLang");
+  weatherError.textContent = `Error! city not found for ${city.value}!`;
+  quotes[0] = {
+    text: "The greatest glory in living lies not in never falling, but in rising every time we fall",
+    author: "Nelson Mandela",
+  };
+  quotes[1] = {
+    text: "The way to get started is to quit talking and begin doing.",
+    author: "Walt Disney",
+  };
+  quotes[2] = {
+    text: "Spread love everywhere you go. Let no one ever come to you without leaving happier. ",
+    author: "Mother Teresa",
+  };
+  quotes[3] = {
+    text: "Tell me and I forget. Teach me and I remember. Involve me and I learn.",
+    author: "Benjamin Franklin",
+  };
+  quotes[4] = {
+    text: "It is during our darkest moments that we must focus to see the light.",
+    author: "Aristotle",
+  };
+  quotes[5] = {
+    text: "Whoever is happy will make others happy too.",
+    author: "Anne Frank",
+  };
+  quotes[6] = {
+    text: "You will face many defeats in life, but never let yourself be defeated.",
+    author: "Maya Angelou",
+  };
+  quotes[7] = {
+    text: "Not how long, but how well you have lived is the main thing.",
+    author: "Seneca",
+  };
+  quotes[8] = {
+    text: "The whole secret of a successful life is to find out what is one’s destiny to do, and then do it.",
+    author: "Henry Ford",
+  };
+  (quotes[9] = {
+    text: "Life is like riding a bicycle. To keep your balance, you must keep moving.",
+    author: "Albert Einstein",
+  }),
+    (quotes[10] = {
+      text: "My mama always said, life is like a box of chocolates. You never know what you're gonna get.",
+      author: " Forrest Gump",
+    });
+  getQuotes();
 });
