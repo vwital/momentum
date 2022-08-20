@@ -426,6 +426,7 @@ const timeSet = document.querySelector(".time-set ");
 const dateSet = document.querySelector(".date-set ");
 const greetingSet = document.querySelector(".greeting-set ");
 const quoteSet = document.querySelector(".quote-set ");
+const changeQuoteButton = document.querySelector(".change-quote");
 
 settings.addEventListener("click", () => {
   settingsContainer.classList.toggle("show");
@@ -440,6 +441,7 @@ weatherSet.addEventListener("click", () => {
 });
 quoteSet.addEventListener("click", () => {
   myQuote.classList.toggle("hidden");
+  changeQuoteButton.classList.toggle("hidden");
 });
 dateSet.addEventListener("click", () => {
   myDate.classList.toggle("hidden");
@@ -449,4 +451,24 @@ timeSet.addEventListener("click", () => {
 });
 greetingSet.addEventListener("click", () => {
   greetingContainer.classList.toggle("hidden");
+});
+
+// window.addEventListener("beforeunload", getLocalStorageSettings);
+
+// function getLocalStorageSettings() {
+//   localStorage.getItem(greetingSet);
+// }
+
+RU.addEventListener("click", () => {
+  document.getElementsByName("yourName")[0].placeholder = "Введите имя";
+  document.getElementsByName("yourCity")[0].placeholder = "Введите город";
+  // let timeOfDay = "";
+  // const date = new Date();
+  // const hours = date.getHours();
+  // if (hours >= 0 && hours < 6) timeOfDay = "ночного времени";
+  // if (hours >= 6 && hours < 12) timeOfDay = "утречка";
+  // if (hours >= 12 && hours < 18) timeOfDay = "дня";
+  // if (hours >= 18 && hours < 24) timeOfDay = "вечера";
+  // greeting.innerHTML = `Доброго ${timeOfDay}`;
+  RU.classList.add("active");
 });

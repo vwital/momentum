@@ -381,11 +381,12 @@ body {
 .settings-container {
   width: 200px;
   height: 200px;
-  background: linear-gradient(40deg, gray, white);
+  background: rgba(0, 0, 0, 0.5);
+  border: 2px solid wheat;
   position: absolute;
   left: 50px;
   bottom: 50px;
-  color: #000000;
+  color: #fff;
   display: none;
 }
 
@@ -399,6 +400,10 @@ body {
 .hidden {
   transition: 0.5s;
   opacity: 0;
+}
+
+.language {
+  display: flex;
 }
 
 .change-quote {
