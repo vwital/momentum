@@ -19,13 +19,19 @@ const RU = document.querySelector(".RU");
 let randomNum;
 let isPlay = false;
 let playNum = 0;
+let lang = "EN";
 //Время
 function showTime() {
   const date = new Date();
   const currentTime = date.toLocaleTimeString();
   time.textContent = currentTime;
   showDate();
-  getTimeOfDay();
+  if (lang === "RU") {
+    getTimeOfDayRU();
+  } else {
+    getTimeOfDay();
+  }
+
   setTimeout(showTime, 1000);
 }
 showTime();
@@ -53,6 +59,18 @@ function getTimeOfDay() {
   if (hours >= 12 && hours < 18) timeOfDay = "afternoon";
   if (hours >= 18 && hours < 24) timeOfDay = "evening";
   greeting.textContent = `Good ${timeOfDay}`;
+  return timeOfDay;
+}
+
+function getTimeOfDayRU() {
+  const date = new Date();
+  const hours = date.getHours();
+  let timeOfDay = "";
+  if (hours >= 0 && hours < 6) timeOfDay = "Доброй ночи";
+  if (hours >= 6 && hours < 12) timeOfDay = "Доброе утречко";
+  if (hours >= 12 && hours < 18) timeOfDay = "Добрый день";
+  if (hours >= 18 && hours < 24) timeOfDay = "Добрый вечер";
+  greeting.textContent = `${timeOfDay}`;
   return timeOfDay;
 }
 
@@ -462,6 +480,7 @@ function getLocalStorageSettings() {
 EN.classList.add("myLang");
 
 RU.addEventListener("click", () => {
+  lang = "RU";
   document.getElementsByName("yourName")[0].placeholder = "[Введите имя]";
   document.getElementsByName("yourCity")[0].placeholder = "Введите город";
   playerSet.innerHTML = '<input type="checkbox" checked> Плеер';
@@ -470,6 +489,7 @@ RU.addEventListener("click", () => {
   dateSet.innerHTML = '<input  type="checkbox" checked> Дата';
   greetingSet.innerHTML = '<input  type="checkbox" checked> Приветствие';
   quoteSet.innerHTML = '<input type="checkbox" checked> Цитата';
+
   /*
 playerSet.innerHTML = '<input type="checkbox" checked> player'
 weatherSet.innerHTML = '<input  type="checkbox" checked> weather'
@@ -492,6 +512,7 @@ quoteSet.innerHTML = '<input type="checkbox" checked> quote'
   EN.classList.remove("myLang");
 });
 EN.addEventListener("click", () => {
+  lang = "EN";
   document.getElementsByName("yourName")[0].placeholder = "[Enter name]";
   document.getElementsByName("yourCity")[0].placeholder = "Enter your city";
   playerSet.innerHTML = '<input type="checkbox" checked> Player';
