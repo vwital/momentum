@@ -453,15 +453,33 @@ greetingSet.addEventListener("click", () => {
   greetingContainer.classList.toggle("hidden");
 });
 
-// window.addEventListener("beforeunload", getLocalStorageSettings);
+window.addEventListener("beforeunload", getLocalStorageSettings);
 
-// function getLocalStorageSettings() {
-//   localStorage.getItem(greetingSet);
-// }
+function getLocalStorageSettings() {
+  localStorage.getItem(greetingContainer.classList);
+  localStorage.getItem(time.classList);
+}
+EN.classList.add("myLang");
 
 RU.addEventListener("click", () => {
-  document.getElementsByName("yourName")[0].placeholder = "Введите имя";
+  document.getElementsByName("yourName")[0].placeholder = "[Введите имя]";
   document.getElementsByName("yourCity")[0].placeholder = "Введите город";
+  playerSet.innerHTML = '<input type="checkbox" checked> Плеер';
+  weatherSet.innerHTML = '<input  type="checkbox" checked> Погода';
+  timeSet.innerHTML = '<input  type="checkbox" checked> Время';
+  dateSet.innerHTML = '<input  type="checkbox" checked> Дата';
+  greetingSet.innerHTML = '<input  type="checkbox" checked> Приветствие';
+  quoteSet.innerHTML = '<input type="checkbox" checked> Цитата';
+  /*
+playerSet.innerHTML = '<input type="checkbox" checked> player'
+weatherSet.innerHTML = '<input  type="checkbox" checked> weather'
+timeSet.innerHTML = '<input  type="checkbox" checked> time'
+dateSet.innerHTML = '<input  type="checkbox" checked> date'
+greetingSet.innerHTML = '<input  type="checkbox" checked> greeting'
+quoteSet.innerHTML = '<input type="checkbox" checked> quote'
+
+
+*/
   // let timeOfDay = "";
   // const date = new Date();
   // const hours = date.getHours();
@@ -470,5 +488,18 @@ RU.addEventListener("click", () => {
   // if (hours >= 12 && hours < 18) timeOfDay = "дня";
   // if (hours >= 18 && hours < 24) timeOfDay = "вечера";
   // greeting.innerHTML = `Доброго ${timeOfDay}`;
-  RU.classList.add("active");
+  RU.classList.add("myLang");
+  EN.classList.remove("myLang");
+});
+EN.addEventListener("click", () => {
+  document.getElementsByName("yourName")[0].placeholder = "[Enter name]";
+  document.getElementsByName("yourCity")[0].placeholder = "Enter your city";
+  playerSet.innerHTML = '<input type="checkbox" checked> Player';
+  weatherSet.innerHTML = '<input  type="checkbox" checked> Weather';
+  timeSet.innerHTML = '<input  type="checkbox" checked> Time';
+  dateSet.innerHTML = '<input  type="checkbox" checked> Date';
+  greetingSet.innerHTML = '<input  type="checkbox" checked> Greeting';
+  quoteSet.innerHTML = '<input type="checkbox" checked> Quote';
+  EN.classList.add("myLang");
+  RU.classList.remove("myLang");
 });
