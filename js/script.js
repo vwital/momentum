@@ -29,6 +29,7 @@ function showTime() {
   if (lang === "RU") {
     getTimeOfDayRU();
     showDateRU();
+    getWeather.url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=ru&appid=d366b9cb418c81737502748bcf7f9253&units=metric`;
   } else {
     getTimeOfDay();
     showDate();
@@ -176,11 +177,8 @@ function getLocalStorageCity() {
 window.addEventListener("load", getLocalStorage);
 const weatherError = document.querySelector(".weather-error");
 async function getWeather() {
-  let lang = "en";
-  RU.addEventListener("click", () => {
-    lang = "ru";
-  });
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=${lang}&appid=d366b9cb418c81737502748bcf7f9253&units=metric`;
+  let langW = "en";
+  let url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=${langW}&appid=d366b9cb418c81737502748bcf7f9253&units=metric`;
   const res = await fetch(url);
   const data = await res.json();
   if (data.cod === "404" || data.cod === "400") {
