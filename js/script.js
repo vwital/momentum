@@ -20,6 +20,7 @@ let randomNum;
 let isPlay = false;
 let playNum = 0;
 let lang = "EN";
+let langW = "en";
 //Время
 function showTime() {
   const date = new Date();
@@ -178,35 +179,68 @@ console.log(city.value);
 window.addEventListener("load", getLocalStorage);
 const weatherError = document.querySelector(".weather-error");
 async function getWeather() {
-  let langW = "en";
-  let url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=${langW}&appid=d366b9cb418c81737502748bcf7f9253&units=metric`;
+  let url = `https://api.openweathermap.org/data/2.5/weather?q=${
+    city.value
+  }&lang=${lang.toLowerCase()}&appid=d366b9cb418c81737502748bcf7f9253&units=metric`;
   const res = await fetch(url);
   const data = await res.json();
-
-  if (data.cod === "404" || data.cod === "400") {
-    weatherError.textContent = `Error! city not found for ${city.value}!`;
-    weatherIcon.classList = "";
-    temperature.textContent = "";
-    wind.textContent = "";
-    humidity.textContent = "";
-    weatherDescription.textContent = "";
-  } else {
-    weatherIcon.className = "weather-icon owf";
-    weatherIcon.classList.add(`owf-${data.weather[0].id}`);
-    temperature.textContent = `${Math.round(data.main.temp)}°C`;
-    weatherDescription.textContent = data.weather[0].description;
-    wind.textContent = `Wind speed: ${Math.round(data.wind.speed)} m/s`;
-    humidity.textContent = `Humidity: ${data.main.humidity}%`;
-    weatherError.textContent = "";
-  }
-  if (city.value[0] === ",") {
-    console.log("err");
-    weatherError.textContent = `Error! city not found for ${city.value}!`;
-    weatherIcon.classList = "";
-    temperature.textContent = "";
-    wind.textContent = "";
-    humidity.textContent = "";
-    weatherDescription.textContent = "";
+  console.log(langW);
+  if (lang === "EN") {
+    if (data.cod === "404" || data.cod === "400") {
+      weatherError.textContent = `Error! city not found for ${city.value}!`;
+      weatherIcon.classList = "";
+      temperature.textContent = "";
+      wind.textContent = "";
+      humidity.textContent = "";
+      weatherDescription.textContent = "";
+    } else {
+      weatherIcon.className = "weather-icon owf";
+      weatherIcon.classList.add(`owf-${data.weather[0].id}`);
+      temperature.textContent = `${Math.round(data.main.temp)}°C`;
+      weatherDescription.textContent = data.weather[0].description;
+      wind.textContent = `Wind speed: ${Math.round(data.wind.speed)} m/s`;
+      humidity.textContent = `Humidity: ${data.main.humidity}%`;
+      weatherError.textContent = "";
+    }
+    if (city.value[0] === ",") {
+      console.log("err");
+      weatherError.textContent = `Error! city not found for ${city.value}!`;
+      weatherIcon.classList = "";
+      temperature.textContent = "";
+      wind.textContent = "";
+      humidity.textContent = "";
+      weatherDescription.textContent = "";
+    }
+  } else if ((lang = "RU")) {
+    url = `https://api.openweathermap.org/data/2.5/weather?q=${
+      city.value
+    }&lang=${lang.toLowerCase()}&appid=d366b9cb418c81737502748bcf7f9253&units=metric`;
+    console.log(langW);
+    if (data.cod === "404" || data.cod === "400") {
+      weatherError.textContent = `Ошибка. Город: ${city.value} не найден!`;
+      weatherIcon.classList = "";
+      temperature.textContent = "";
+      wind.textContent = "";
+      humidity.textContent = "";
+      weatherDescription.textContent = "";
+    } else {
+      weatherIcon.className = "weather-icon owf";
+      weatherIcon.classList.add(`owf-${data.weather[0].id}`);
+      temperature.textContent = `${Math.round(data.main.temp)}°C`;
+      weatherDescription.textContent = data.weather[0].description;
+      wind.textContent = `Скорость ветра: ${Math.round(data.wind.speed)} m/s`;
+      humidity.textContent = `Влажность: ${data.main.humidity}%`;
+      weatherError.textContent = "";
+    }
+    if (city.value[0] === ",") {
+      console.log("err");
+      weatherError.textContent = `Ошибка. Город: ${city.value} не найден!`;
+      weatherIcon.classList = "";
+      temperature.textContent = "";
+      wind.textContent = "";
+      humidity.textContent = "";
+      weatherDescription.textContent = "";
+    }
   }
 }
 city.addEventListener("change", () => {
@@ -511,7 +545,7 @@ RU.addEventListener("click", () => {
   greetingSet.innerHTML = '<input  type="checkbox" checked> Приветствие';
   quoteSet.innerHTML = '<input type="checkbox" checked> Цитата';
   languageSet.innerHTML = "Язык:";
-  weatherError.textContent = `Ошибка. Город: ${city.value} не найден!`;
+
   quotes[0].author = "Наполеон Хилл";
   quotes[0].text =
     "Что разум человека может постигнуть и во что он может поверить, того он способен достичь";
@@ -544,6 +578,8 @@ RU.addEventListener("click", () => {
   getQuotes();
   RU.classList.add("myLang");
   EN.classList.remove("myLang");
+
+  getWeather();
 });
 EN.addEventListener("click", () => {
   lang = "EN";
@@ -558,7 +594,6 @@ EN.addEventListener("click", () => {
   languageSet.innerHTML = "Language:";
   EN.classList.add("myLang");
   RU.classList.remove("myLang");
-  weatherError.textContent = `Error! city not found for ${city.value}!`;
   quotes[0] = {
     text: "The greatest glory in living lies not in never falling, but in rising every time we fall",
     author: "Nelson Mandela",
@@ -604,4 +639,5 @@ EN.addEventListener("click", () => {
       author: " Forrest Gump",
     });
   getQuotes();
+  getWeather();
 });
