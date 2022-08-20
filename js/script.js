@@ -447,7 +447,7 @@ const settings = document.querySelector(".settings ");
 const settingsContainer = document.querySelector(".settings-container ");
 const language = document.querySelector(".language ");
 const EN = document.querySelector(".EN ");
-
+const languageSet = document.querySelector(".my-language");
 const playerSet = document.querySelector(".player-set ");
 const weatherSet = document.querySelector(".weather-set ");
 const timeSet = document.querySelector(".time-set ");
@@ -499,6 +499,7 @@ RU.addEventListener("click", () => {
   dateSet.innerHTML = '<input  type="checkbox" checked> Дата';
   greetingSet.innerHTML = '<input  type="checkbox" checked> Приветствие';
   quoteSet.innerHTML = '<input type="checkbox" checked> Цитата';
+  languageSet.innerHTML = "Язык:";
 
   /*
 playerSet.innerHTML = '<input type="checkbox" checked> player'
@@ -531,6 +532,7 @@ EN.addEventListener("click", () => {
   dateSet.innerHTML = '<input  type="checkbox" checked> Date';
   greetingSet.innerHTML = '<input  type="checkbox" checked> Greeting';
   quoteSet.innerHTML = '<input type="checkbox" checked> Quote';
+  languageSet.innerHTML = "Language:";
   EN.classList.add("myLang");
   RU.classList.remove("myLang");
 });
