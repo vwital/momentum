@@ -173,6 +173,7 @@ function getLocalStorageCity() {
     city.value = localStorage.getItem("city");
   }
 }
+console.log(city.value);
 
 window.addEventListener("load", getLocalStorage);
 const weatherError = document.querySelector(".weather-error");
@@ -181,6 +182,7 @@ async function getWeather() {
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=${langW}&appid=d366b9cb418c81737502748bcf7f9253&units=metric`;
   const res = await fetch(url);
   const data = await res.json();
+
   if (data.cod === "404" || data.cod === "400") {
     weatherError.textContent = `Error! city not found for ${city.value}!`;
     weatherIcon.classList = "";
@@ -196,6 +198,15 @@ async function getWeather() {
     wind.textContent = `Wind speed: ${Math.round(data.wind.speed)} m/s`;
     humidity.textContent = `Humidity: ${data.main.humidity}%`;
     weatherError.textContent = "";
+  }
+  if (city.value[0] === ",") {
+    console.log("err");
+    weatherError.textContent = `Error! city not found for ${city.value}!`;
+    weatherIcon.classList = "";
+    temperature.textContent = "";
+    wind.textContent = "";
+    humidity.textContent = "";
+    weatherDescription.textContent = "";
   }
 }
 city.addEventListener("change", () => {
