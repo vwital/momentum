@@ -25,14 +25,16 @@ function showTime() {
   const date = new Date();
   const currentTime = date.toLocaleTimeString();
   time.textContent = currentTime;
-  showDate();
+
   if (lang === "RU") {
     getTimeOfDayRU();
+    showDateRU();
   } else {
     getTimeOfDay();
+    showDate();
   }
 
-  setTimeout(showTime, 1000);
+  setTimeout(showTime, 100);
 }
 showTime();
 
@@ -46,6 +48,16 @@ function showDate() {
     day: "numeric",
   };
   const currentDate = date.toLocaleDateString("en-US", options);
+  myDate.textContent = currentDate;
+}
+function showDateRU() {
+  const date = new Date();
+  const options = {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+  };
+  const currentDate = date.toLocaleDateString("ru-RU", options);
   myDate.textContent = currentDate;
 }
 // Время суток
