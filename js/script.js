@@ -15,7 +15,7 @@ const author = document.querySelector(".author");
 const playPrev = document.querySelector(".play-prev");
 const playNext = document.querySelector(".play-next");
 const player = document.querySelector(".player");
-
+const RU = document.querySelector(".RU");
 let randomNum;
 let isPlay = false;
 let playNum = 0;
@@ -146,7 +146,11 @@ function getLocalStorageCity() {
 window.addEventListener("load", getLocalStorage);
 const weatherError = document.querySelector(".weather-error");
 async function getWeather() {
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=en&appid=d366b9cb418c81737502748bcf7f9253&units=metric`;
+  let lang = "en";
+  RU.addEventListener("click", () => {
+    lang = "ru";
+  });
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=${lang}&appid=d366b9cb418c81737502748bcf7f9253&units=metric`;
   const res = await fetch(url);
   const data = await res.json();
   if (data.cod === "404" || data.cod === "400") {
@@ -407,4 +411,42 @@ speaker.addEventListener("click", () => {
   } else {
     audio.volume = 0.5;
   }
+});
+const greetingContainer = document.querySelector(".greeting-container");
+const weather = document.querySelector(".weather");
+const myQuote = document.querySelector(".my-quote");
+const settings = document.querySelector(".settings ");
+const settingsContainer = document.querySelector(".settings-container ");
+const language = document.querySelector(".language ");
+const EN = document.querySelector(".EN ");
+
+const playerSet = document.querySelector(".player-set ");
+const weatherSet = document.querySelector(".weather-set ");
+const timeSet = document.querySelector(".time-set ");
+const dateSet = document.querySelector(".date-set ");
+const greetingSet = document.querySelector(".greeting-set ");
+const quoteSet = document.querySelector(".quote-set ");
+
+settings.addEventListener("click", () => {
+  settingsContainer.classList.toggle("show");
+});
+
+playerSet.addEventListener("click", () => {
+  player.classList.toggle("hidden");
+  playListContainer.classList.toggle("hidden");
+});
+weatherSet.addEventListener("click", () => {
+  weather.classList.toggle("hidden");
+});
+quoteSet.addEventListener("click", () => {
+  myQuote.classList.toggle("hidden");
+});
+dateSet.addEventListener("click", () => {
+  myDate.classList.toggle("hidden");
+});
+timeSet.addEventListener("click", () => {
+  time.classList.toggle("hidden");
+});
+greetingSet.addEventListener("click", () => {
+  greetingContainer.classList.toggle("hidden");
 });

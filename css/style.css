@@ -369,6 +369,38 @@ body {
   padding: 20px;
 }
 
+.settings {
+  background: url(../assets/svg/settings.svg);
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  left: 20px;
+  cursor: pointer;
+}
+
+.settings-container {
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(40deg, gray, white);
+  position: absolute;
+  left: 50px;
+  bottom: 50px;
+  color: #000000;
+  display: none;
+}
+
+.show {
+  display: flex;
+  align-self: revert;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hidden {
+  transition: 0.5s;
+  opacity: 0;
+}
+
 .change-quote {
   margin-bottom: 30px;
   background-image: url("../assets/svg/reload.svg");
